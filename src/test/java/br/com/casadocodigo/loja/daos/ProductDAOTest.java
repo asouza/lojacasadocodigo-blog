@@ -1,6 +1,7 @@
 package br.com.casadocodigo.loja.daos;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -30,7 +31,6 @@ public class ProductDAOTest {
 	@Transactional
 	@Test
 	public void shouldSumAllPricesOfEachBookPerType() {		
-		
 		List<Product> printedBooks = ProductBuilder
 				.newProduct(BookType.PRINTED, BigDecimal.TEN).more(4)
 				.buildAll();
@@ -41,6 +41,24 @@ public class ProductDAOTest {
 		ebooks.stream().forEach(productDAO::save);
 		BigDecimal value = productDAO.sumPricesPerType(BookType.PRINTED);
 		Assert.assertEquals(new BigDecimal(50).setScale(2), value);
+		
+	}
+	
+	@Transactional
+	@Test
+	public void shouldFindAllBooksWithMoreThanX() {		
+		List<Product> printedBooks100 = ProductBuilder
+				.newProduct(BookType.PRINTED, BigDecimal.TEN,100).more(2)
+				.buildAll();
+		printedBooks100.stream().forEach(productDAO::save);
+		
+		List<Product> printedBooksGreaterThan100 = ProductBuilder
+				.newProduct(BookType.PRINTED, BigDecimal.TEN,150).more(2)
+				.buildAll();
+		printedBooksGreaterThan100.stream().forEach(productDAO::save);
+		
+		List<Product> books = productDAO.findByPagesGreaterThan(100);
+		Assert.assertEquals(3, books.size());
 		
 	}
 }

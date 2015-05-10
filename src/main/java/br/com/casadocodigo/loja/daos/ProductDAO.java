@@ -1,6 +1,7 @@
 package br.com.casadocodigo.loja.daos;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -19,5 +20,7 @@ public interface ProductDAO extends CrudRepository<Product, Integer>{
 
 	@Query("select sum(price.value) from Product p join p.prices price where price.bookType = :book")
 	public BigDecimal sumPricesPerType(@Param("book") BookType book);
+	
+	public List<Product> findByPagesGreaterThan(@Param("pages") int pages);
 	
 }

@@ -19,20 +19,25 @@ public class ProductBuilder {
 	}
 	
 	public static ProductBuilder newProduct(BookType bookType,BigDecimal value){
-		Product book = create("Book 1",bookType, value);
+		Product book = create("Book 1",bookType, value,150);
+		return new ProductBuilder(book);	
+	}
+	
+	public static ProductBuilder newProduct(BookType bookType,BigDecimal value,int pages){
+		Product book = create("Book 1",bookType, value,pages);
 		return new ProductBuilder(book);	
 	}
 	
 	public static ProductBuilder newProduct(){
-		Product book = create("Book 1",BookType.COMBO, BigDecimal.TEN);
+		Product book = create("Book 1",BookType.COMBO, BigDecimal.TEN,150);
 		return new ProductBuilder(book);	
 	}
 
-	private static Product create(String bookName,BookType bookType, BigDecimal value) {
+	private static Product create(String bookName,BookType bookType, BigDecimal value, int pages) {
 		Product book = new Product();
 		book.setTitle(bookName);
 		book.setReleaseDate(Calendar.getInstance());
-		book.setPages(150);
+		book.setPages(pages);
 		book.setDescription("great book about testing");
 		Price price = new Price();
 		price.setBookType(bookType);
@@ -45,7 +50,7 @@ public class ProductBuilder {
 		Product base = products.get(0);
 		Price price = base.getPrices().get(0);
 		for (int i = 0; i < number; i++) {
-			products.add(create("Book "+i, price.getBookType(), price.getValue()));
+			products.add(create("Book "+i, price.getBookType(), price.getValue(),base.getPages()));
 		}
 		return this;
 	}
