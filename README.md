@@ -1,9 +1,9 @@
-#Agradecimento
-Obrigado por ter comprado o livro ou por estar interessado no projeto criado a partir do conteúdo do mesmo :). Fique a vontade
-para navegar, realizar o download e fazer as experimentações que achar necessárias.
+#Base para o blog
+Esse projeto é o que vai ser usado como base para os posts no blog. Vou tentar sempre ir evoluindo a aplicação de um jeito
+que faça sentido.
 
 ##Informações importantes sobre o projeto	 
 
-	* Caso precise, faça o download do zip do projeto pronto, basta seguir este link -> https://github.com/livrospringmvc/lojacasadocodigo/archive/versao_download.zip
-	* O projeto pronto para download, aponta para um banco mysql chamado "casadocodigo", fique atento a isso.
-	* A maioria dos commits foram feitos pensando nos capítulos do livro, então fique a vontade para clonar o projeto e navegar entre eles.
+	* O projeto pronto para download, aponta para um banco mysql chamado "casadocodigo_blog", fique atento a isso.
+	* Para rodar os testes, precisa do casadocodigo_blog_test
+	* Tirando o commit inicial, a maioria dos outros foram feitos de forma que você possa acompanhar a evolução da implementação.
