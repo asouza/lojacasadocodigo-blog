@@ -50,7 +50,6 @@ import com.google.common.cache.CacheBuilder;
 @ComponentScan(basePackageClasses = { HomeController.class, ProductDAO.class,
 		FileSaver.class, ShoppingCart.class, RequestHeaderKeyGeneration.class })
 @EnableCaching
-@EnableJpaRepositories(basePackages="br.com.casadocodigo.loja")
 public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 	
 	@Override

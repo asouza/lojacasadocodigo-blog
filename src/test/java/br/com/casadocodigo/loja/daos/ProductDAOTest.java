@@ -20,7 +20,7 @@ import br.com.casadocodigo.loja.models.BookType;
 import br.com.casadocodigo.loja.models.Product;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ProductDAO.class,JPAConfiguration.class,DataSourceConfigurationTest.class })
+@ContextConfiguration(classes = {JPAConfiguration.class,DataSourceConfigurationTest.class })
 @ActiveProfiles("test")
 public class ProductDAOTest {
 

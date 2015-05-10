@@ -1,0 +1,11 @@
+[log que achou o controller]
+12:26:09 [localhost-startStop-1] RequestMappingHandlerMapping - Looking for request mappings in application context: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Thu Dec 11 12:26:07 BRST 2014]; root of context hierarchy
+12:26:09 [localhost-startStop-1] RequestMappingHandlerMapping - Mapped "{[/],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void br.com.casadocodigo.loja.controllers.HomeController.index()
+
+[capitulo validação]
+11:11:49 [localhost-startStop-1] AnnotationConfigWebApplicationContext - Unable to locate MessageSource with name 'messageSource': using default [org.springframework.context.support.DelegatingMessageSource@3e52add6]
+11:36:43 [http-nio-8080-exec-28] JstlView - Added model object 'org.springframework.validation.BindingResult.produto' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'produtos/form'
+
+Field error in object 'produto' on field 'numeroPaginas': rejected value []; codes [typeMismatch.produto.numeroPaginas,typeMismatch.numeroPaginas,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [produto.numeroPaginas,numeroPaginas]; arguments []; default message [numeroPaginas]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'numeroPaginas'; nested exception is java.lang.NumberFormatException: For input string: ""]
+Field error in object 'produto' on field 'descricao': rejected value []; codes [NotBlank.produto.descricao,NotBlank.descricao,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [produto.descricao,descricao]; arguments []; default message [descricao]]; default message [may not be empty]
+Field error in object 'produto' on field 'titulo': rejected value []; codes [NotBlank.produto.titulo,NotBlank.titulo,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [produto.titulo,titulo]; arguments []; default message [titulo]]; default message [may not be empty]

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.casadocodigo.loja.models.BookType;
@@ -17,5 +18,6 @@ public interface ProductDAO extends CrudRepository<Product, Integer>{
 	public Product findOne(Integer id);
 
 	@Query("select sum(price.value) from Product p join p.prices price where price.bookType = :book")
-	public BigDecimal sumPricesPerType(BookType bookType); 
+	public BigDecimal sumPricesPerType(@Param("book") BookType book);
+	
 }

@@ -1,0 +1,9 @@
+insert into Role values('ROLE_ADMIN');
+insert into Role values('ROLE_COMPRADOR');
+
+insert into SystemUser(login,name,password) values('comprador@gmail.com','Alberto','$2a$10$lt7pS7Kxxe5JfP.vjLNSyOXP11eHgh7RoPxo5fvvbMCZkCUss2DGu');
+insert into SystemUser(login,name,password) values('admin@casadocodigo.com.br','Administrador','$2a$10$lt7pS7Kxxe5JfP.vjLNSyOXP11eHgh7RoPxo5fvvbMCZkCUss2DGu');
+
+
+insert into SystemUser_Role(SystemUser_login,roles_name) values('comprador@gmail.com','ROLE_COMPRADOR');
+insert into SystemUser_Role(SystemUser_login,roles_name) values('admin@casadocodigo.com.br','ROLE_ADMIN');
