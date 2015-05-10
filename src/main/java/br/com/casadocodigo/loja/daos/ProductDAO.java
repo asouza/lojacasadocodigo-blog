@@ -4,17 +4,15 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import br.com.casadocodigo.loja.models.BookType;
 import br.com.casadocodigo.loja.models.Product;
 
-@Repository
-public interface ProductDAO extends CrudRepository<Product, Integer>{
+@org.springframework.stereotype.Repository
+public interface ProductDAO extends Repository<Product, Integer>{
 	
-	@Override
 	@Query("select distinct(p) from Product p join fetch p.prices where p.id=:id")
 	public Product findOne(Integer id);
 
@@ -22,5 +20,9 @@ public interface ProductDAO extends CrudRepository<Product, Integer>{
 	public BigDecimal sumPricesPerType(@Param("book") BookType book);
 	
 	public List<Product> findByPagesGreaterThan(@Param("pages") int pages);
+	
+	public List<Product> findAll();
+	
+	public Product save(Product product);
 	
 }
