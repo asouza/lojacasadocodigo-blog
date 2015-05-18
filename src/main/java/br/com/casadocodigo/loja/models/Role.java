@@ -11,12 +11,24 @@ public class Role implements GrantedAuthority {
 	@Id
 	private String name;
 
-	@Deprecated
-	private Role() {
+	public Role() {
+	}
+	
+	
+	
+	public Role(String name) {
+		super();
+		this.name = name;
 	}
 
-	private Role(String name) {
+
+
+	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	@Override

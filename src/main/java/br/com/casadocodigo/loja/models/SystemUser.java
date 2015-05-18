@@ -84,4 +84,8 @@ public class SystemUser implements UserDetails{
 		return true;
 	}
 
+	public void addRole(Role role) {
+		this.roles.add(role);
+	}
+
 }
