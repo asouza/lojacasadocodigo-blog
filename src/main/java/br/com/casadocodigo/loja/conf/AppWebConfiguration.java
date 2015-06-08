@@ -12,7 +12,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
@@ -35,20 +34,14 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import br.com.casadocodigo.loja.cache.RequestHeaderKeyGeneration;
-import br.com.casadocodigo.loja.controllers.HomeController;
-import br.com.casadocodigo.loja.daos.ProductDAO;
-import br.com.casadocodigo.loja.infra.FileSaver;
 import br.com.casadocodigo.loja.models.Product;
-import br.com.casadocodigo.loja.models.ShoppingCart;
 import br.com.casadocodigo.loja.viewresolver.CustomXMLViewResolver;
 import br.com.casadocodigo.loja.viewresolver.JsonViewResolver;
 
 import com.google.common.cache.CacheBuilder;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = { HomeController.class, ProductDAO.class,
-		FileSaver.class, ShoppingCart.class, RequestHeaderKeyGeneration.class })
+@ComponentScan(basePackages="br.com.casadocodigo.loja")
 @EnableCaching
 public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 	

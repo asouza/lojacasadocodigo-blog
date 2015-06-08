@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
@@ -14,6 +17,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.casadocodigo.loja.events.messages.NewPurchaseEvent;
 import br.com.casadocodigo.loja.models.PaymentData;
 import br.com.casadocodigo.loja.models.ShoppingCart;
 import br.com.casadocodigo.loja.models.SystemUser;
@@ -26,8 +30,8 @@ public class PaymentController {
 	private ShoppingCart shoppingCart;
 	@Autowired
 	private RestTemplate restTemplate;
-	@Autowired
-	private MailSender mailer;
+	@Autowired	
+	private ApplicationContext applicationContext;
 
 	@RequestMapping(value = "checkout", method = RequestMethod.POST)
 	public Callable<ModelAndView> checkout(@AuthenticationPrincipal SystemUser user) {
@@ -37,7 +41,7 @@ public class PaymentController {
 			try {
 				restTemplate.postForObject(uriToPay,
 						new PaymentData(total), String.class);
-				sendNewPurchaseMail(user);
+				applicationContext.publishEvent(new NewPurchaseEvent(this, shoppingCart, user));
 				return new ModelAndView("redirect:/payment/success");
 			} catch (HttpClientErrorException exception) {
 				return new ModelAndView("redirect:/payment/error");
@@ -45,14 +49,4 @@ public class PaymentController {
 
 		};
 	}
-
-	private void sendNewPurchaseMail(SystemUser user) {
-		SimpleMailMessage email = new SimpleMailMessage();
-		email.setFrom("compras@casadocodigo.com.br");
-		email.setTo(user.getLogin());
-		email.setSubject("Nova compra");
-		email.setText("corpodo email");			
-		mailer.send(email);
-	}
-
 }
