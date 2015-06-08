@@ -17,12 +17,12 @@ public class PurchaseEmailEventListener implements ApplicationListener<NewPurcha
 	@Override
 	public void onApplicationEvent(NewPurchaseEvent event) {
 		System.out.println("Enviando email de nova compra "+event.getCart().getTotal());
-		SimpleMailMessage email = new SimpleMailMessage();
-		email.setFrom("compras@casadocodigo.com.br");
-		email.setTo(event.getSystemUser().getLogin());
-		email.setSubject("Nova compra");
-		email.setText("corpodo email");			
-		mailer.send(email);
+//		SimpleMailMessage email = new SimpleMailMessage();
+//		email.setFrom("compras@casadocodigo.com.br");
+//		email.setTo(event.getSystemUser().getLogin());
+//		email.setSubject("Nova compra");
+//		email.setText("corpodo email");			
+//		mailer.send(email);
 	}
 
 }
