@@ -2,14 +2,16 @@ package br.com.casadocodigo.loja.events;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 
 import br.com.casadocodigo.loja.events.messages.NewPurchaseEvent;
 
 @Component
-public class PurchaseEmailEventListener implements ApplicationListener<NewPurchaseEvent>{
+@Order(2)
+public class PurchaseEmailEventListener implements ApplicationListener<NewPurchaseEvent>,Ordered{
 	
 	@Autowired
 	private MailSender mailer;
@@ -23,6 +25,11 @@ public class PurchaseEmailEventListener implements ApplicationListener<NewPurcha
 //		email.setSubject("Nova compra");
 //		email.setText("corpodo email");			
 //		mailer.send(email);
+	}
+
+	@Override
+	public int getOrder() {
+		return 1;
 	}
 
 }
