@@ -29,6 +29,13 @@
 	<%@include file="/WEB-INF/footer.jsp" %>
 	
 </body>
+<script>
+	var promoSource = new EventSource("${spring:mvcUrl('PC#enableQuickPromoNotifier').build()}");
+	promoSource.onmessage = function(event) {
+		var data = event.data;
+		console.log(data)
+	};	
+</script>
 </html>
 <jsp:invoke fragment="extraScripts"/>
 
