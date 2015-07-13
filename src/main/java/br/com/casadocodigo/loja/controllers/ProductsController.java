@@ -98,7 +98,7 @@ public class ProductsController {
 	@RequestMapping("habilita/promocao/{id}")
 	@ResponseStatus(value=HttpStatus.OK)
 	public void enableQuickPromoForProduct(@PathVariable("id") Integer id) throws IOException{
-		Product product = products.findOne(id);
+		Product product = products.findOne(id);		
 		notifier.send(new QuickPromoData(product,messageSource));
 	}
 	
